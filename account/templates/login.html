@@ -65,7 +65,7 @@ a:hover {
 }
 
 </style>
-<form action="" method='POST'>
+<form action="{%url 'signin'  %}" method='POST'>
     {% csrf_token %}
     <h3><strong>Login Form</strong></h3>
     <div class="mb-3">
@@ -79,10 +79,7 @@ a:hover {
       </div>
 
       <button class="btn btn-primary" style="width:100%">Login</button>
-      
-      <p>
-        <a href="{%url 'task'}"></a>
-      </p>
+  
 
       
 

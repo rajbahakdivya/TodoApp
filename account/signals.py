@@ -1,7 +1,8 @@
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.dispatch import receiver
-from .models import OtpToken
+from account.models import OTPToken
+
 from django.core.mail import send_mail
 from django.utils import timezone
 
@@ -13,13 +14,13 @@ def create_token (sender,instance,created, **kwargs):
             pass
 
         else:
-            OtpToken.objects.create(user=instance, otp_expires_at=timezone.now()+ timezone.timedelta(minutes=5))
+            otp = OTPToken.objects.create(user=instance, otp_expires_at=timezone.now()+ timezone.timedelta(minutes=5))
             instance.is_active= False
             instance.save()
 
             # For email credentials
 
-            otp = OtpToken.objects.filter(user=instance).last()
+            otp = OTPToken.objects.filter(user=instance).last()
             subject= "Email Verification"
             message=f"""
  

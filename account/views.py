@@ -7,6 +7,12 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login,logout
+from django.urls import reverse
+from todoapp.views import task_list
+from .models import CustomUser
+import hashlib
+from django.contrib.auth.hashers import check_password
+
 # Create your views here.
 
 # This is for signup view
@@ -71,7 +77,6 @@ def resend_otp(request):
          user = get_user_model().objects.get(email=user_email)
          otp = OTPToken.objects.create(user=user, otp_expires_at=timezone.now() + timezone.timedelta(minutes=5))
                    
-        
         # for email variables
          subject="Email Verification"
          message= f"""
@@ -102,16 +107,17 @@ def resend_otp(request):
 
 def signin(request):
     if request.method == "POST":
-        username = request.POST['username']
+        email = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request,username= username, password=password)
-
+        user = CustomUser.objects.filter(email=email).first()
+      
         if user is not None:
-            login(request,user)
-            messages.success(request, f"Hi {request.user.username}, you are now logged in")
-            return redirect("task-list")
+            if check_password(password, user.password):
+                            login(request,user)
+                            messages.success(request, f"Hi {request.user.username}, you are now logged in")
+                            return redirect(task_list)
         else:
             messages.warning(request, "Invalid credentials")
-            return redirect("signin")
+            return redirect("register")
         
     return render(request,"login.html")
