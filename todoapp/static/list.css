@@ -1,0 +1,74 @@
+/* styles.css */
+
+
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .todo-container {
+      text-align: center;
+    }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .todo-container {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+
+  
+  
+  .todo-search {
+    margin-bottom: 10px;
+  }
+  
+  .todo-search input[type="text"] {
+    padding: 5px;
+    width: 70%;
+  }
+  
+  .todo-search button {
+    padding: 5px;
+  }
+  
+  .todo-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .task {
+    display: flex;
+    align-items: center;
+  }
+  
+  .task input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .btn-container {
+    display: flex;
+  }
+  
+  .edit,
+  .del {
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  
+  /* Add more styles as needed */
+  

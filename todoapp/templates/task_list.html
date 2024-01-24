@@ -1,0 +1,63 @@
+	{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet"  href="{% static 'list.css' %}">
+  
+ <title>Todo List</title>
+
+	</head>
+	<body>
+   
+    {% for message in messages %}  
+
+      <div class="alert alert-{{message.tags}}" role="alert" style="margin-top: 30px">
+        <h5>{{message}}</h5>
+      </div>
+        
+      {% endfor %}
+
+
+    <div class="todo-container">
+      <h1>TODO LIST OF THE DAY</h1>
+    </div>
+
+  <div class="todo-container">
+    <div class="todo-search">
+      <form action="" method="POST">
+      <!--<input type="text" placeholder="Enter Todo"/> -->
+      {%csrf_token %}
+      {{form.title}} 
+      <button>Add</button>
+      </form>
+  <title>Todo List</title>
+</head>
+<body>
+
+  {% for task in tasks %}
+    <div class="todo-list">
+      <div class="todo-list-item">
+        <div class="task">
+          <input type="checkbox"/>
+          <p>{{task.title}}</p>
+        </div>
+
+     
+        <div class="btn-container">
+          <div class="edit"></div>
+          <a href="{% url 'task-update' task.id %}"
+             class="btn btn-danger md-sm">Edit</a>
+          <div class="del"></div>
+          <a href="{% url 'task-delete' task.id %}"
+            class="btn btn-success md-sm">Delete</a>
+        </div>
+      </div>
+
+     {% endfor %}
+
+      
+
+</body>
+</html>

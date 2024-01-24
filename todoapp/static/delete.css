@@ -1,0 +1,36 @@
+
+.delete-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .delete-container p {
+    margin-bottom: 15px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn-cancle,
+  .btn-delete {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .btn-cancle {
+    background-color: #ccc;
+  }
+  
+  .btn-delete {
+    background-color: #8232e3;
+    color: #fff;
+  }
+  
+  /* Add more styles as needed */
+  
